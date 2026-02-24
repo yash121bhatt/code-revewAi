@@ -4,13 +4,13 @@ import { z } from "zod";
 let openaiClient: OpenAI | null = null;
 
 function getOpenAIClient(): OpenAI {
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
     throw new Error("OPENAI_API_KEY is not set");
   }
 
   if (!openaiClient) {
-    openaiClient = new OpenAI({ apiKey });
+    openaiClient = new OpenAI({ apiKey, baseURL: "https://openrouter.ai/api/v1" });
   }
 
   return openaiClient;
